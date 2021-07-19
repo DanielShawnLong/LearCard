@@ -25,10 +25,10 @@ public class UserController {
             path = "/createUser",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public User createUser(@RequestBody String userName,
-                           @RequestBody String userEmail,
-                           @RequestBody String userPassword) {
-        // Create new user
+    public User createUser(@RequestParam String userName,
+                           @RequestParam String userEmail,
+                           @RequestParam String userPassword) {
+        // create new user
         User user = new User(userName, userEmail, userPassword);
         userRepository.save(user);
 
@@ -48,7 +48,7 @@ public class UserController {
         // search user by id
         Optional<User> userList = userRepository.findById(id);
 
-        // Edit user
+        // edit user
         User updatedUser = userList.get();
         updatedUser.setUserName(userName);
         updatedUser.setUserEmail(userEmail);
@@ -60,4 +60,21 @@ public class UserController {
         // return updated user
         return updatedUser;
     }
+    @RequestMapping (
+            method = RequestMethod.DELETE,
+            path = "/removeLearnCard",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public User removeUser(@RequestParam int id) {
+        // Search user by id
+        Optional<User> userList = userRepository.findById(id);
+
+        // delete user
+        userRepository.deleteById(id);
+
+        // return deleted user
+        return userList.get();
+    }
+
+
 }
