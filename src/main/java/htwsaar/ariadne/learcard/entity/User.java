@@ -1,6 +1,5 @@
 package htwsaar.ariadne.learcard.entity;
 
-import com.mysql.cj.x.protobuf.MysqlxExpr;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
