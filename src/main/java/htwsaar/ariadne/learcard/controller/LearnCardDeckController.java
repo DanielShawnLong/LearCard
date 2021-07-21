@@ -52,7 +52,7 @@ public class LearnCardDeckController {
             path = "/addCard",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public LearnCardDeck addCard(@RequestParam int deckId, @RequestParam int cardId){
+    public LearnCardDeck addCard(@RequestParam int deckId, @RequestParam Long cardId){
         Optional<LearnCardDeck> learnCardDeck = learnCardDeckRepository.findById(deckId);
         Optional<LearnCard> learnCard = learnCardRepository.findById(cardId);
         if(learnCardDeck.isPresent() && learnCard.isPresent()){

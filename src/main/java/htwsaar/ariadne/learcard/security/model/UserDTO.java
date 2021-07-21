@@ -1,8 +1,14 @@
 package htwsaar.ariadne.learcard.security.model;
 
+import com.sun.istack.NotNull;
+
 public class UserDTO {
+
 	private String userName;
+
 	private String userPassword;
+
+	private String userEmail;
 
 	public String getUserName() {
 		return userName;
@@ -20,5 +26,11 @@ public class UserDTO {
 		this.userPassword = userPassword;
 	}
 
+	public String getUserEmail() {
+		return userEmail;
+	}
 
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
 }

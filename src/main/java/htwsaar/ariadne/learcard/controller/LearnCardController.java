@@ -1,22 +1,82 @@
 package htwsaar.ariadne.learcard.controller;
 
 import htwsaar.ariadne.learcard.entity.LearnCard;
+import htwsaar.ariadne.learcard.errorMsg.CardNotFoundException;
 import htwsaar.ariadne.learcard.repositorys.LearnCardRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
+
 
 @RestController
 public class LearnCardController {
 
-    @Autowired
-    private LearnCardRepository learnCardRepository;
+    private LearnCardRepository repository;
 
+    LearnCardController(LearnCardRepository repository){
+        this.repository = repository;
+    }
+
+    /**
+     * Create card
+     * @param newLearnCard
+     * @return
+     */
+    @PostMapping("/cards")
+    LearnCard newLearnCard (@RequestBody LearnCard newLearnCard){
+        return repository.save(newLearnCard);
+    }
+
+    /**
+     * Get all cards
+      * @return
+     */
+    @GetMapping("/cards")
+    List<LearnCard> all(){
+        return repository.findAll();
+    }
+
+    /**
+     * Get card by id
+     * @param id
+     * @return
+     */
+    @GetMapping("/cards/{id}")
+    LearnCard  one(@PathVariable Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new CardNotFoundException(id));
+    }
+
+    /**
+     * Edit card
+     * @param changedCard
+     * @param id
+     * @return
+     */
+    @PutMapping("/cards/{id}")
+    LearnCard changedCard(@RequestBody LearnCard changedCard, @PathVariable Long id ){
+        return repository.findById(id)
+                .map(learnCard -> {
+                    learnCard.setFrontText(changedCard.getFrontText());
+                    learnCard.setBackText(changedCard.getBackText());
+                    learnCard.setSolved(changedCard.isSolved());
+                    return repository.save(learnCard);
+                })
+                .orElseGet(() -> {
+                    changedCard.setId(id);
+                    return repository.save(changedCard);
+                });
+    }
+
+    /**
+     * Delete card
+     * @param id
+     */
+    @DeleteMapping("cards/{id}")
+    void deleteCard(@PathVariable Long id){
+        repository.deleteById(id);
+    }
+/*
     @RequestMapping(
             method = RequestMethod.GET,
             path = "/createLearnCard",
@@ -81,5 +141,5 @@ public class LearnCardController {
         // Gebe die gefundene Lernkarteikarte zurück
         return learnCardList.get();
     }
-
+*/
 }
