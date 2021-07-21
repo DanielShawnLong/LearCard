@@ -4,11 +4,11 @@ import htwsaar.ariadne.learcard.entity.LearnCard;
 import htwsaar.ariadne.learcard.errorMsg.CardNotFoundException;
 import htwsaar.ariadne.learcard.repositorys.LearnCardRepository;
 import htwsaar.ariadne.learcard.security.config.JwtTokenUtil;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.function.Predicate;
+
 
 
 @RestController
@@ -16,7 +16,7 @@ public class LearnCardController {
 
     private LearnCardRepository repository;
     private  JwtTokenUtil jwtToken;
-    private LearnCard learnCard;
+
     LearnCardController(LearnCardRepository repository, JwtTokenUtil jwtToken){
 
         this.repository = repository;
@@ -29,12 +29,10 @@ public class LearnCardController {
      * @return
      */
     @PostMapping("/cards")
-    LearnCard newLearnCard (@RequestBody LearnCard newLearnCard, @RequestHeader("authorization") String token){
-
+    LearnCard newLearnCard (@RequestBody LearnCard newLearnCard,
+                            @RequestHeader("authorization") String token){
 
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
-
-
         newLearnCard.setUserName(name);
 
 
@@ -58,9 +56,11 @@ public class LearnCardController {
      * @return
      */
     @GetMapping("/cards/{id}")
-    LearnCard  one(@PathVariable Long id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new CardNotFoundException(id));
+    LearnCard  one(@PathVariable Long id,
+                   @RequestHeader("authorization") String token ) {
+        String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
+        return repository.findByIdAndUserName(id,name);
+               // .orElseThrow(() -> new CardNotFoundException(id)); // Supplier takes just one argument TODO
     }
 
     /**
@@ -70,8 +70,12 @@ public class LearnCardController {
      * @return
      */
     @PutMapping("/cards/{id}")
-    LearnCard changedCard(@RequestBody LearnCard changedCard, @PathVariable Long id ){
-        return repository.findById(id)
+    LearnCard changedCard(@RequestBody LearnCard changedCard,
+                          @PathVariable Long id ,
+                          @RequestHeader("authorization") String token){
+        String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
+
+        return repository.findById(id)   //return repository.findByIdAndUserName(id,name) TODO
                 .map(learnCard -> {
                     learnCard.setFrontText(changedCard.getFrontText());
                     learnCard.setBackText(changedCard.getBackText());
@@ -89,8 +93,12 @@ public class LearnCardController {
      * @param id
      */
     @DeleteMapping("cards/{id}")
-    void deleteCard(@PathVariable Long id){
-        repository.deleteById(id);
+    void deleteCard(@PathVariable Long id,
+                    @RequestHeader("authorization") String token){
+
+        String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
+
+        repository.deleteByIdAndUserName(id, name); //CardNotFoundException TODO
     }
 /*
     @RequestMapping(

@@ -86,6 +86,7 @@ public class UserController {
      */
     @DeleteMapping("/users/{id}")
     void deleteUser(@PathVariable Long id) {
+
         repository.deleteById(id);
     }
 
