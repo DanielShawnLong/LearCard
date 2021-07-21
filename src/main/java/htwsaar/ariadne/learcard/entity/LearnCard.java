@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Table(name = "learncards")
 public class LearnCard {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,16 +22,20 @@ public class LearnCard {
     @NotNull
     private String backText;
 
+    private String userName;
+
     public LearnCard () {
         this.isSolved = false;
         this.frontText = "";
         this.backText = "";
+        this.userName = "";
     }
 
-    public LearnCard (String frontText, String backText) {
+    public LearnCard (String frontText, String backText, String userName) {
         this.isSolved = false;
         this.frontText = frontText;
         this.backText = backText;
+        this.userName = userName;
     }
 
     public Long getId() {
@@ -64,4 +69,12 @@ public class LearnCard {
     public void setBackText(String backText) {
         this.backText = backText;
     }
+
+    public void setUserName(String userName){ this.userName = userName; }
+
+    public String getUserName() {
+        return userName;
+    }
+
+
 }

@@ -13,6 +13,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+
+
 import java.util.ArrayList;
 
 @Service
@@ -39,6 +41,10 @@ public class JwtUserDetailsService implements UserDetailsService {
 		newUser.setUserName(user.getUserName());
 		newUser.setUserEmail(user.getUserEmail());
 		newUser.setUserPassword(bcryptEncoder.encode(user.getUserPassword()));
-		return userRepository.save(newUser);
+		User test = userRepository.save(newUser);
+
+		System.out.println("PAMELA test:" + test.getId());
+
+		return test;
 	}
 }

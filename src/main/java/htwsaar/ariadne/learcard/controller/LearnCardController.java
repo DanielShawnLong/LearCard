@@ -3,18 +3,24 @@ package htwsaar.ariadne.learcard.controller;
 import htwsaar.ariadne.learcard.entity.LearnCard;
 import htwsaar.ariadne.learcard.errorMsg.CardNotFoundException;
 import htwsaar.ariadne.learcard.repositorys.LearnCardRepository;
+import htwsaar.ariadne.learcard.security.config.JwtTokenUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 
 @RestController
 public class LearnCardController {
 
     private LearnCardRepository repository;
+    private  JwtTokenUtil jwtToken;
+    private LearnCard learnCard;
+    LearnCardController(LearnCardRepository repository, JwtTokenUtil jwtToken){
 
-    LearnCardController(LearnCardRepository repository){
         this.repository = repository;
+        this.jwtToken = jwtToken;
     }
 
     /**
@@ -23,7 +29,15 @@ public class LearnCardController {
      * @return
      */
     @PostMapping("/cards")
-    LearnCard newLearnCard (@RequestBody LearnCard newLearnCard){
+    LearnCard newLearnCard (@RequestBody LearnCard newLearnCard, @RequestHeader("authorization") String token){
+
+
+        String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
+
+
+        newLearnCard.setUserName(name);
+
+
         return repository.save(newLearnCard);
     }
 
@@ -32,8 +46,10 @@ public class LearnCardController {
       * @return
      */
     @GetMapping("/cards")
-    List<LearnCard> all(){
-        return repository.findAll();
+    List<LearnCard> all(@RequestHeader("authorization") String token){
+        String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
+
+        return repository.findByUserName(name);
     }
 
     /**
