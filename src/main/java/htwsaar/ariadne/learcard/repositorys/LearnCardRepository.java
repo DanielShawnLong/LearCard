@@ -17,6 +17,8 @@ public interface LearnCardRepository extends JpaRepository<LearnCard, Long> {
     LearnCard findByIdAndUserName (Long id, String username);
     List <LearnCard> findByGroupIdAndUserName(Long group, String username);
 
+    List <LearnCard> findByGroupIdAndUserNameAndRightAnswer(Long group, String username, Boolean answer);
+    List <LearnCard> findByGroupIdAndUserNameAndRightAnswerAndIsSolved(Long group, String username, Boolean rightAnswer, Boolean isSolved);
 
     @Transactional
     void deleteByIdAndUserName(Long id, String username);

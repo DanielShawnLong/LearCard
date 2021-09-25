@@ -25,7 +25,10 @@ public class LearnCard {
 
     private String userName;
 
-    @ManyToOne (cascade = CascadeType.ALL)//(targetEntity = htwsaar.ariadne.learcard.entity.LearnCardGroup.class)
+    @Column(columnDefinition = "BOOLEAN")
+    private Boolean rightAnswer;
+
+    @ManyToOne (cascade = CascadeType.MERGE)
     @NotNull
     private LearnCardGroup group;
 
@@ -34,37 +37,34 @@ public class LearnCard {
         this.frontText = "";
         this.backText = "";
         this.userName = "";
-       this.group = null;
+        this.group = null;
+        this.rightAnswer = false;
     }
 
-    public LearnCard (String frontText, String backText, String userName, LearnCardGroup group) {
-        this.isSolved = false;
+    public LearnCard (Boolean isSolved, String frontText, String backText, String userName, LearnCardGroup group, Boolean rightAnswer) {
+        this.isSolved = isSolved;
         this.frontText = frontText;
         this.backText = backText;
         this.userName = userName;
        this.group = group;
+       this.rightAnswer = rightAnswer;
     }
 
     public Long getId() {
         return id;
     }
+    public void setId(Long id) { this.id = id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public boolean isSolved() {
+    public Boolean getIsSolved() {
         return isSolved;
     }
-
-    public void setSolved(boolean solved) {
-        isSolved = solved;
+    public void setIsSolved(Boolean solved) {
+        this.isSolved = isSolved;
     }
 
     public String getFrontText() {
         return frontText;
     }
-
     public void setFrontText(String frontText) {
         this.frontText = frontText;
     }
@@ -72,24 +72,24 @@ public class LearnCard {
     public String getBackText() {
         return backText;
     }
-
     public void setBackText(String backText) {
         this.backText = backText;
     }
 
-    public void setUserName(String userName){ this.userName = userName; }
-
     public String getUserName() {
         return userName;
     }
+    public void setUserName(String userName){ this.userName = userName; }
 
     public LearnCardGroup getGroup() {
         return group;
     }
-
     public void setGroup(LearnCardGroup group) {
         this.group = group;
     }
+
+    public Boolean getRightAnswer(){return rightAnswer;}
+    public void setRightAnswer(Boolean rightAnswer){this.rightAnswer = rightAnswer;}
 
 
 }

@@ -60,8 +60,11 @@ public class LearnCardController {
     @GetMapping("/cards/{id}")
     LearnCard  one(@PathVariable Long id,
                    @RequestHeader("authorization") String token ) {
+
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
-        return repository.findByIdAndUserName(id,name);
+        LearnCard check = repository.findByIdAndUserName(id,name);
+        if(check == null) throw new CardNotFoundException(id);
+        else { return repository.findByIdAndUserName(id,name);}
                // .orElseThrow(() -> new CardNotFoundException(id)); // Supplier takes just one argument TODO
     }
 
@@ -81,7 +84,8 @@ public class LearnCardController {
                 .map(learnCard -> {
                     learnCard.setFrontText(changedCard.getFrontText());
                     learnCard.setBackText(changedCard.getBackText());
-                    learnCard.setSolved(changedCard.isSolved());
+                    learnCard.setIsSolved(changedCard.getIsSolved());
+                    learnCard.setRightAnswer(changedCard.getRightAnswer());
                     return repository.save(learnCard);
                 })
                 .orElseGet(() -> {
@@ -118,6 +122,32 @@ public class LearnCardController {
 
     }
 
+    /**
+     * Get all cards from group where rightAnswer is false
+     * @return
+     */
+
+    @GetMapping("/cards-wrong/{id}")
+    List<LearnCard> allWrong(@RequestHeader("authorization") String token , @PathVariable Long id) {
+
+        String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
+
+        return repository.findByGroupIdAndUserNameAndRightAnswer(id, name, false);
+
+    }
+    /**
+     * Get all cards from group where rightAnswer is false and isSolved is false
+     * @return
+     */
+
+    @GetMapping("/cards-session/{id}")
+    List<LearnCard> startSession(@RequestHeader("authorization") String token , @PathVariable Long id) {
+
+        String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
+
+        return repository.findByGroupIdAndUserNameAndRightAnswerAndIsSolved(id, name, false, false);
+
+    }
 
 
 }
