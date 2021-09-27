@@ -9,7 +9,8 @@ import {
   List,
   ListItemText,
   Tooltip,
-  IconButton
+  IconButton,
+  Typography
   
 } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -18,6 +19,8 @@ import handleCatchError from '../_helpers/handleCatchServicesError'
 import isAxiosError from '../_helpers/isAxiosError'
 import CardService from '../../services/cards'
 import AddCard from './AddCard'
+import Session from './Session'
+
 const useStyle = makeStyles(() => ({
   button: {
     background: '#00b5c2',
@@ -62,6 +65,7 @@ const Cards = (props) => {
   const [card, setCard] = useState({ frontText: '', backText:'', isSolved:false, group: {id: group.id}, rightAnswer: false })
   const [cardList, setCardList] = useState({ cardList: null })
   const [open, setOpen] = useState(false)
+  const [openSession, setOpenSession] =  useState(false)
 
   let sortedCards
   
@@ -82,7 +86,7 @@ const Cards = (props) => {
   }, [updateList])
       
   /**
-   * Handle open add card dialog 
+   * Handle back to group
    */
   const handleBackToGroup = () => {
     setOpenCards(false)
@@ -93,7 +97,12 @@ const Cards = (props) => {
   const handleClickOpen = () => {
     setOpen(true)
   }
-    
+  /**
+   * Handle open Session
+   */
+  const handleOpenSession = () => {
+    setOpenSession(true)
+  }
   /**
  * Handle delete card
  * @param {*} id 
@@ -105,9 +114,20 @@ const Cards = (props) => {
       .catch(error => alert('etwas ist schiefgelaufen DELETE'))
     setUpdateList(!updateList)
   }
+  if (openSession)
+    return (
+      <div>
+        <Session
+          openSession={openSession}
+          cardList={cardList}
+          group={group}
+        />
+      </div>
+    )
+
   if (!cardList.cardList || cardList.cardList.length === 0)
     return (
-      <div>NO CARDS
+      <div>
         <Button onClick={() => handleClickOpen()} className={classes.button}>Add Cards</Button>
         <Button onClick={() => handleBackToGroup()} className={classes.button}>Back to Groups</Button>
         <AddCard
@@ -120,10 +140,13 @@ const Cards = (props) => {
           setUpdateList={setUpdateList}
           group={group}
         />
+        <Typography>You dont have any card yet!</Typography>
       </div>)
   return (
     <div>
+    
       <Button onClick={() => handleClickOpen()} className={classes.button}>Add Cards</Button>
+      <Button onClick={() => handleOpenSession()} className={classes.button}>Start Session</Button>
       <Button onClick={() => handleBackToGroup()} className={classes.button}>Back to Groups</Button>
       <AddCard
         setAlert={setAlert}
