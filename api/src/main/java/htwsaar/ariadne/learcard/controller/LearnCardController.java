@@ -37,6 +37,7 @@ public class LearnCardController {
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
         newLearnCard.setUserName(name);
 
+        System.out.println("");
 
         return repository.save(newLearnCard);
     }

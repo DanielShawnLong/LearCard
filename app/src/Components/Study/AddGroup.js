@@ -59,7 +59,7 @@ const AddGroup = (props) => {
             autoFocus
             margin="dense"
             id="name"
-            label="Title"
+            label="Group Name"
             fullWidth
             onChange={(e) => handleChangeName(e)}
           />

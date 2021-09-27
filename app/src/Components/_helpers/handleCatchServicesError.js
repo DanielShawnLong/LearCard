@@ -2,7 +2,7 @@
 import {get} from 'lodash'
 import  {UNHANDLED_ERROR,  CONTACT_SUPPORT} from '../../constants'
 export default (error,setAlert) => {
-
+  console.log('TEST', { setAlert })
   if (get(error, 'error.response.data.error.statusCode') && error.isAxiosError) {
     let message =''
     switch (error.response.data.error.statusCode) {

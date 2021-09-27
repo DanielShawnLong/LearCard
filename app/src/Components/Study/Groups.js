@@ -17,6 +17,8 @@ import GroupService from '../../services/group'
 import handleCatchError from '../_helpers/handleCatchServicesError'
 import isAxiosError from '../_helpers/isAxiosError'
 import AddGroup from './AddGroup'
+import Cards from './Cards'
+import { indexOf } from 'lodash'
 
 const useStyle = makeStyles(() => ({
   button: {
@@ -59,6 +61,8 @@ const Groups = (props) => {
   const [group, setGroup] = useState({ groupName: '' })
   const [groupList, setGroupList] = useState({ groupList: null })
   const [open, setOpen] = useState(false)
+  const [index, setIndex] = useState(false)
+  const [openCards, setOpenCards] = useState(false)
   const [updateList, setUpdateList] = useState(false)
   const classes = useStyle()
 
@@ -84,7 +88,7 @@ const Groups = (props) => {
   }, [updateList])
  
   /**
-   * Handle open add group dialog
+   * Handle open add group dialog gug
    */
   const handleClickOpen = () => {
     setOpen(true)
@@ -92,8 +96,9 @@ const Groups = (props) => {
   /**
    * Handle open cards
    */
-  const handleOpenCards = () => {
-    setOpen(true)
+  const handleOpenCards = (index) => {
+    setIndex(index)
+    setOpenCards(true)
   }
   /**
  * Handle delete group
@@ -123,6 +128,18 @@ const Groups = (props) => {
       />
       <Typography className={classes.msg}>You dont have any groups yet! Add new and start learning today!</Typography>
     </Grid></div>
+  
+  if (openCards)
+    return (
+      <div>
+        <Cards
+          group={groupList.groupList[index]}
+          openCards={openCards}
+          setOpenCards={setOpenCards}
+          setAlert={setAlert}>
+        </Cards>
+      </div>
+    )
   return (
     <div>
       <Grid container direction="column">
@@ -143,7 +160,7 @@ const Groups = (props) => {
         </Grid>
         <Grid item direction="row">
           <List >
-            {groupList.groupList.map((group) => {
+            { groupList.groupList.map((group, index) => {
               return (
                 <div key={group.id} className={classes.group} >
              
@@ -158,7 +175,7 @@ const Groups = (props) => {
                       </IconButton>
                 
                     </Tooltip>
-                    <Button onClick={() => handleOpenCards()} className={classes.button2}>CARDS</Button>
+                    <Button onClick={() => handleOpenCards(index)} className={classes.button2}>CARDS</Button>
                   </ListItemText>
                  
                   <div className={classes.dividerSmall} />

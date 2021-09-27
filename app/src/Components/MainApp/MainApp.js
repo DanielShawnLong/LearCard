@@ -76,7 +76,9 @@ const MainApp = (props) => {
             <Header setView={setView} />
           </Grid>
           <div className={classes.group}>
-            <Groups></Groups>
+            <Groups
+              setAlert={setAlert}
+            />
           </div>
           <Grid item xs={12} className={classes.gridFooter}>
             <Typography variant="caption" display="block" gutterBottom>
