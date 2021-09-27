@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8e194fa5-59bd-4065-9237-8adc9b3660a9" name="Default Changelist" comment="Pamela update +frontend">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/.eslintrc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/public/map.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/Components/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/Components/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/Components/Header/Header.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/Components/Login/Login.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/Components/MainApp/MainApp.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/Components/Register/Register.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/Components/Snackbar/Snackbar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/Components/Study/AddGroup.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/Components/Study/Groups.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/Components/_helpers/handleCatchServicesError.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/Components/_helpers/isAxiosError.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/Components/img/login.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/Components/img/register.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/constants.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/reportWebVitals.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/services/_helpers/authHeader.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/services/group/addGroup.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/services/group/deleteGroup.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/services/group/getGroups.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/services/group/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/services/user/addUser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/services/user/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/services/user/loginUser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/app/src/setupTests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/htwsaar/ariadne/learcard/LearcardApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/htwsaar/ariadne/learcard/controller/LearnCardController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/htwsaar/ariadne/learcard/controller/LearnCardGroupController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/htwsaar/ariadne/learcard/controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/htwsaar/ariadne/learcard/entity/LearnCard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/htwsaar/ariadne/learcard/entity/LearnCardGroup.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/htwsaar/ariadne/learcard/entity/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/htwsaar/ariadne/learcard/errorMsg/CardNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/htwsaar/ariadne/learcard/errorMsg/UserNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/htwsaar/ariadne/learcard/repositorys/LearnCardGroupRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/htwsaar/ariadne/learcard/repositorys/LearnCardRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/htwsaar/ariadne/learcard/repositorys/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/htwsaar/ariadne/learcard/security/config/JwtAuthenticationEntryPoint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/htwsaar/ariadne/learcard/security/config/JwtRequestFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/htwsaar/ariadne/learcard/security/config/JwtTokenUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/htwsaar/ariadne/learcard/security/config/WebSecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/htwsaar/ariadne/learcard/security/controller/JwtAuthenticationController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/htwsaar/ariadne/learcard/security/model/JwtRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/htwsaar/ariadne/learcard/security/model/JwtResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/htwsaar/ariadne/learcard/security/model/UserDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/htwsaar/ariadne/learcard/security/service/JwtUserDetailsService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/htwsaar/ariadne/learcard/LearcardApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="pam1" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1vWk1WBiUh7Moo7mTx7P0akvz9y" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/api" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\pamcia\Desktop\LearCard\src\main\java\htwsaar\ariadne\learcard\security" />
+      <recent name="C:\Users\pamcia\Desktop\LearCard\src\main\java\htwsaar\ariadne\learcard\security\config" />
+      <recent name="C:\Users\pamcia\Desktop\LearCard\src\main\java\htwsaar\ariadne\learcard" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="htwsaar.ariadne.learcard" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="htwsaar.ariadne.learcard.errorMsg" />
+      <recent name="htwsaar.ariadne.learcard.security.service" />
+      <recent name="htwsaar.ariadne.learcard.security.dao" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="LearcardApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="learcard" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="htwsaar.ariadne.learcard.LearcardApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8e194fa5-59bd-4065-9237-8adc9b3660a9" name="Default Changelist" comment="" />
+      <created>1626685023097</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1626685023097</updated>
+      <workItem from="1626685027617" duration="16667000" />
+      <workItem from="1626704673833" duration="45136000" />
+      <workItem from="1632392943170" duration="49047000" />
+      <workItem from="1632749950718" duration="89000" />
+    </task>
+    <task id="LOCAL-00001" summary="Pamela 1">
+      <created>1626698553160</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1626698553160</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Pamela 2">
+      <created>1626706752016</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1626706752016</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Pamela CRUD User">
+      <created>1626797292343</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1626797292343</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Pamela CRUD User clean">
+      <created>1626797719981</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1626797719981</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Pamela User register / login">
+      <created>1626885642897</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1626885642897</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Pamela Update Cards Post Put Delete">
+      <created>1626891818554</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1626891818554</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Pamela update Cards -&gt; Post with UserName -&gt; GET allCards created by you">
+      <created>1626902345736</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1626902345736</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Pamela update Cards -&gt; Get Card by id only created by you / delete card only created by you">
+      <created>1626907608387</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1626907608387</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Pamela update">
+      <created>1632575763693</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1632575763693</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Pamela update">
+      <created>1632581239176</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1632581239176</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Pamela update +frontend">
+      <created>1632749702442</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1632749702442</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Pamela 1" />
+    <MESSAGE value="Pamela 2" />
+    <MESSAGE value="Pamela CRUD User" />
+    <MESSAGE value="Pamela CRUD User clean" />
+    <MESSAGE value="Pamela User register / login" />
+    <MESSAGE value="Pamela Update Cards Post Put Delete" />
+    <MESSAGE value="Pamela update Cards -&gt; Post with UserName -&gt; GET allCards created by you" />
+    <MESSAGE value="Pamela update Cards -&gt; Get Card by id only created by you / delete card only created by you" />
+    <MESSAGE value="Pamela update" />
+    <MESSAGE value="Pamela update +frontend" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pamela update +frontend" />
+  </component>
+</project>
