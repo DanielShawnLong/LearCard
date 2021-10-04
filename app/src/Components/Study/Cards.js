@@ -56,7 +56,7 @@ const useStyle = makeStyles(() => ({
   
 }))
 const Cards = (props) => {
-  const { setOpenCards, openCards, group } = props
+  const { setOpenCards, openCards, group, setGroup } = props
   console.log({group})
   const classes = useStyle()
   const [updateList, setUpdateList] = useState(false)
@@ -65,7 +65,7 @@ const Cards = (props) => {
   const [card, setCard] = useState({ frontText: '', backText:'', isSolved:false, group: {id: group.id}, rightAnswer: false })
   const [cardList, setCardList] = useState({ cardList: null })
   const [open, setOpen] = useState(false)
-  const [openSession, setOpenSession] =  useState(false)
+  const [openSession, setOpenSession] = useState(false)
 
   let sortedCards
   
@@ -84,7 +84,7 @@ const Cards = (props) => {
       })
 
   }, [updateList])
-      
+
   /**
    * Handle back to group
    */
@@ -121,6 +121,12 @@ const Cards = (props) => {
           openSession={openSession}
           cardList={cardList}
           group={group}
+          setOpenSession={setOpenSession}
+          setGroup={setGroup}
+          // card={card}
+          setCardList={setCardList}
+          updateList={updateList}
+        
         />
       </div>
     )
@@ -159,7 +165,7 @@ const Cards = (props) => {
         group={group}
       />
       <List>
-        { cardList.cardList.map((card, index) => {
+        { cardList.cardList.map((card) => {
           return (
             <div key={card.id}  >
              

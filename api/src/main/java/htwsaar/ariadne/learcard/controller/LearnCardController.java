@@ -66,7 +66,7 @@ public class LearnCardController {
         LearnCard check = repository.findByIdAndUserName(id,name);
         if(check == null) throw new CardNotFoundException(id);
         else { return repository.findByIdAndUserName(id,name);}
-               // .orElseThrow(() -> new CardNotFoundException(id)); // Supplier takes just one argument TODO
+
     }
 
     /**
@@ -75,23 +75,20 @@ public class LearnCardController {
      * @param id
      * @return
      */
-    @PutMapping("/cards/{id}")
-    LearnCard changedCard(@RequestBody LearnCard changedCard,
+    @PutMapping("/cardsAnswer/{id}")
+    LearnCard changedCardAnswer(@RequestBody LearnCard changedCard,
                           @PathVariable Long id ,
                           @RequestHeader("authorization") String token){
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
 
-        return repository.findById(id)   //return repository.findByIdAndUserName(id,name) TODO
+        return repository.findById(id)
                 .map(learnCard -> {
-                    learnCard.setFrontText(changedCard.getFrontText());
-                    learnCard.setBackText(changedCard.getBackText());
                     learnCard.setIsSolved(changedCard.getIsSolved());
                     learnCard.setRightAnswer(changedCard.getRightAnswer());
                     return repository.save(learnCard);
                 })
                 .orElseGet(() -> {
-                    changedCard.setId(id);
-                    return repository.save(changedCard);
+                    throw new CardNotFoundException(id);
                 });
     }
 

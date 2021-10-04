@@ -58,7 +58,7 @@ public class LearnCard {
     public Boolean getIsSolved() {
         return isSolved;
     }
-    public void setIsSolved(Boolean solved) {
+    public void setIsSolved(Boolean isSolved) {
         this.isSolved = isSolved;
     }
 
