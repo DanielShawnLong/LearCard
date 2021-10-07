@@ -12,14 +12,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-
 @RestController
 public class LearnCardController {
 
     private LearnCardRepository repository;
-    private  JwtTokenUtil jwtToken;
+    private JwtTokenUtil jwtToken;
 
-    LearnCardController(LearnCardRepository repository, JwtTokenUtil jwtToken){
+    LearnCardController(LearnCardRepository repository, JwtTokenUtil jwtToken) {
 
         this.repository = repository;
         this.jwtToken = jwtToken;
@@ -27,12 +26,13 @@ public class LearnCardController {
 
     /**
      * Create card
+     *
      * @param newLearnCard
      * @return
      */
     @PostMapping("/cards")
-    LearnCard newLearnCard (@RequestBody LearnCard newLearnCard,
-                            @RequestHeader("authorization") String token){
+    LearnCard newLearnCard(@RequestBody LearnCard newLearnCard,
+                           @RequestHeader("authorization") String token) {
 
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
         newLearnCard.setUserName(name);
@@ -44,10 +44,11 @@ public class LearnCardController {
 
     /**
      * Get all cards
-      * @return
+     *
+     * @return
      */
     @GetMapping("/cards")
-    List<LearnCard> all(@RequestHeader("authorization") String token){
+    List<LearnCard> all(@RequestHeader("authorization") String token) {
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
 
         return repository.findByUserName(name);
@@ -55,30 +56,34 @@ public class LearnCardController {
 
     /**
      * Get card by id
+     *
      * @param id
      * @return
      */
     @GetMapping("/cards/{id}")
-    LearnCard  one(@PathVariable Long id,
-                   @RequestHeader("authorization") String token ) {
+    LearnCard one(@PathVariable Long id,
+                  @RequestHeader("authorization") String token) {
 
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
-        LearnCard check = repository.findByIdAndUserName(id,name);
-        if(check == null) throw new CardNotFoundException(id);
-        else { return repository.findByIdAndUserName(id,name);}
+        LearnCard check = repository.findByIdAndUserName(id, name);
+        if (check == null) throw new CardNotFoundException(id);
+        else {
+            return repository.findByIdAndUserName(id, name);
+        }
 
     }
 
     /**
      * Edit card
+     *
      * @param changedCard
      * @param id
      * @return
      */
     @PutMapping("/cardsAnswer/{id}")
     LearnCard changedCardAnswer(@RequestBody LearnCard changedCard,
-                          @PathVariable Long id ,
-                          @RequestHeader("authorization") String token){
+                                @PathVariable Long id,
+                                @RequestHeader("authorization") String token) {
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
 
         return repository.findById(id)
@@ -94,11 +99,12 @@ public class LearnCardController {
 
     /**
      * Delete card
+     *
      * @param id
      */
     @DeleteMapping("cards/{id}")
     void deleteCard(@PathVariable Long id,
-                    @RequestHeader("authorization") String token){
+                    @RequestHeader("authorization") String token) {
 
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
 
@@ -108,11 +114,12 @@ public class LearnCardController {
 
     /**
      * Get all cards from group
+     *
      * @return
      */
 
     @GetMapping("/cardsByGroup/{id}")
-    List<LearnCard> all(@RequestHeader("authorization") String token , @PathVariable Long id) {
+    List<LearnCard> all(@RequestHeader("authorization") String token, @PathVariable Long id) {
 
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
 
@@ -122,30 +129,55 @@ public class LearnCardController {
 
     /**
      * Get all cards from group where rightAnswer is false
+     *
      * @return
      */
 
     @GetMapping("/cards-wrong/{id}")
-    List<LearnCard> allWrong(@RequestHeader("authorization") String token , @PathVariable Long id) {
+    List<LearnCard> allWrong(@RequestHeader("authorization") String token, @PathVariable Long id) {
 
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
 
         return repository.findByGroupIdAndUserNameAndRightAnswer(id, name, false);
 
     }
+
     /**
      * Get all cards from group where rightAnswer is false and isSolved is false
+     *
      * @return
      */
 
     @GetMapping("/cards-session/{id}")
-    List<LearnCard> startSession(@RequestHeader("authorization") String token , @PathVariable Long id) {
+    List<LearnCard> startSession(@RequestHeader("authorization") String token, @PathVariable Long id) {
 
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
 
-        return repository.findByGroupIdAndUserNameAndRightAnswerAndIsSolved(id, name, false, false);
+        return repository.findByGroupIdAndUserNameAndRightAnswerAndIsSolved(id, name, false, false); //AndIsSolved
 
     }
 
+    /**
+     * reset all cards from Group
+     *
+     * @param id
+     * @return
+     */
+    @PutMapping("/resetCards/{id}")
+   List <LearnCard>  resetCards(@RequestHeader("authorization") String token,
+                                @PathVariable Long id) {
+        String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
+
+        List<LearnCard> newList = repository.findByGroupIdAndUserName(id, name);
+
+        for (int i = 0; i < newList.size(); i++) {
+            newList.get(i).setRightAnswer(false);
+            repository.save(newList.get(i));
+            }
+
+System.out.println("LIST"+ newList);
+
+     return null;
+        }
 
 }

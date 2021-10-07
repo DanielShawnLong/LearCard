@@ -82,7 +82,7 @@ const Cards = (props) => {
       ).catch(error => {
         handleCatchError(error, setAlert)
       })
-
+    console.log('CARDS', cardList)
   }, [updateList])
 
   /**
@@ -101,7 +101,9 @@ const Cards = (props) => {
    * Handle open Session
    */
   const handleOpenSession = () => {
+    
     setOpenSession(true)
+   
   }
   /**
  * Handle delete card
@@ -126,7 +128,8 @@ const Cards = (props) => {
           // card={card}
           setCardList={setCardList}
           updateList={updateList}
-        
+          setAlert={setAlert}
+          setUpdateList={setUpdateList}
         />
       </div>
     )

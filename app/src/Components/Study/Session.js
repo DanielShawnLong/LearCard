@@ -63,46 +63,74 @@ const useStyle = makeStyles(() => ({
 }))
 
 const Session = (props) => {
-  const {cardList, group, setGroup, setOpenSession, openSession, setCardList, updateList} = props
+  const {cardList, group, setGroup, setOpenSession, openSession, setCardList, updateList, setAlert, setUpdateList} = props
   const theme = useTheme()
   const sessionLabel = `Level ${group.level}`
   const [activeStep, setActiveStep] = useState(0)
   const [toggleAnswer, setToggleAnswer] = useState(true)
-  const  [nextSession, setNextSession] =useState(false)
+  const [nextSession, setNextSession] = useState(false) //for next level
+  const[emptyList, setEmptyList]= useState(false)
   
   const classes = useStyle()
-  //const maxSteps = cardList.cardList.length
- 
-  var newList = cardList.cardList.filter(() => !cardList.cardList[activeStep].rightAnswer)
-  const maxSteps = newList.length
-  console.log('NEW', newList)
+  var maxSteps = cardList.cardList.length
+  let sortedCards
+
   const handleRight = () => {
 
     CardService.updateCardAnswer({ rightAnswer: true, isSolved: true }, cardList.cardList[activeStep].id) 
-    !updateList
-    if (activeStep === maxSteps -1) {
-      !updateList
-      handleAnswer()
-      setNextSession(true)
+    CardService.getCardsFromGroup(group.id)
+    console.log('BEFORE',cardList.cardList)
+
+    if (activeStep === maxSteps - 1) {
+
+      if (!cardList.cardList.some((card) => card['rightAnser'] == true)) {
+        console.log('TRUE',cardList.cardList)
+        setEmptyList(true)
+      } else {
+        console.log('FALSE', cardList.cardList)
+        handleAnswer()//always show Question first
+        setNextSession(true)//When all questions Answered move to next level
+      }
+
+      CardService.getCardsWrong(group.id).then(
+        (cardList) => {
+          sortedCards = cardList.data.sort((a, b) => a.id - b.id)
+          setCardList({ cardList: sortedCards })
+        }
+         
+      ).catch(error => {
+        handleCatchError(error, setAlert)
+      })
     } else {
-      handleAnswer()
+   
+      handleAnswer()//always show Question first
       setActiveStep((prevActiveStep) => prevActiveStep + 1)
-      
+     
     }
   }
     
   const handleWrong = () => {
  
     CardService.updateCardAnswer({ rightAnswer: false, isSolved: true }, cardList.cardList[activeStep].id)
-    !updateList
+    CardService.getCardsFromGroup(group.id)
     if (activeStep === maxSteps - 1) {
-      !updateList
-      handleAnswer()
-      setNextSession(true)
-      //alert('Session Finished!')
+      CardService.getCardsWrong(group.id).then(
+        (cardList) => {
+          sortedCards = cardList.data.sort((a, b) => a.id - b.id)
+          setCardList({ cardList: sortedCards })
+        }
+       
+      ).catch(error => {
+        handleCatchError(error, setAlert)
+      })
+      handleAnswer()//always show Question first
+      setNextSession(true) //When all questions Answered move to next level
+      
     } else {
-      handleAnswer()
+   
+      handleAnswer() //always show Question first
       setActiveStep((prevActiveStep) => prevActiveStep + 1)
+      
     }
   }
   const handleAnswer = () => {
@@ -110,26 +138,39 @@ const Session = (props) => {
   }
     
   const handleBackToCards = () => {
+   
+    CardService.resetCards(group.id)
+    setUpdateList(!updateList)
+    group.level = 0
+    GroupService.updateLevel({ group }, group.id)
+    CardService.getCardsFromGroup(group.id)
     setOpenSession(false)
+   
   }
   const handleNextLevel = () => {
+  
     let nextLevel = group.level + 1
     group.level = nextLevel
     GroupService.updateLevel({ group }, group.id)
-    console.log('Level 2', group.level)
     setNextSession(false)
     setActiveStep(0)
-    
+  
   }
 
+  if (emptyList)
+    return (<div>
+   You finished session! Congratualtions!
+      <Button onClick={() => handleBackToCards()} className={classes.button}>Finish Session</Button>
+   
+    </div>)
   if (nextSession)
     return (<div>
       You finished level: {group.level}
       <Button onClick={() => handleNextLevel()} className={classes.button}>Next Level</Button>
       <Button onClick={() => handleBackToCards()} className={classes.button}>Finish Session</Button>
-      <Button onClick={() => handleBackToCards()} className={classes.button}>Save Session</Button>
       
     </div>)
+  
   return (
     <div>
       <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
@@ -147,8 +188,8 @@ const Session = (props) => {
           <Typography>{sessionLabel}</Typography>
         </Paper>
         <Box sx={{ height: 255, maxWidth: 400, width: '100%', p: 2 }}>
-          {toggleAnswer ? newList[activeStep]?.frontText : newList[activeStep]?.backText }
-          {/*  {toggleAnswer ? cardList.cardList[activeStep]?.frontText : cardList.cardList[activeStep]?.backText } */}
+         
+          {toggleAnswer ? cardList.cardList[activeStep]?.frontText : cardList.cardList[activeStep]?.backText } 
           <Button onClick={() => handleAnswer()} className={classes.button}>{toggleAnswer?'Show Answer':'Show Question'}</Button>
          
         </Box>
