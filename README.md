@@ -15,11 +15,11 @@ Frontend:
 To start:
 1. Create database (MySQL): "learcard"
 2. Open terminal in api folder and run commands: 
--mvn clean install
--mvn spring-boot:run
+- mvn clean install
+- mvn spring-boot:run
 3. Open terminal in app folder and run commands:
--npm install
--npm run start
+- npm install
+- npm run start
 
 
 What is possible?
