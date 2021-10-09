@@ -1,5 +1,8 @@
 package htwsaar.ariadne.learcard.security.config;
-
+/**
+ * Made with tutorial: https://medium.com/swlh/spring-boot-security-jwt-hello-world-example-b479e457664c
+ * @author TUTORIAL-Author: Rameez Shaikh / customized Pamela Filipinski
+ */
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

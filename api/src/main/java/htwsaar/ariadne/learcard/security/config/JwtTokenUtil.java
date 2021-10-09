@@ -1,5 +1,8 @@
 package htwsaar.ariadne.learcard.security.config;
-
+/**
+ * Made with tutorial: https://medium.com/swlh/spring-boot-security-jwt-hello-world-example-b479e457664c
+ * @author TUTORIAL-Author: Rameez Shaikh / customized Pamela Filipinski
+ */
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

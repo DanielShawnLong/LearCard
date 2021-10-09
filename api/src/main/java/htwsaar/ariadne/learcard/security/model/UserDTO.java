@@ -1,6 +1,9 @@
 package htwsaar.ariadne.learcard.security.model;
+/**
+ * Made with tutorial: https://medium.com/swlh/spring-boot-security-jwt-hello-world-example-b479e457664c
+ * @author TUTORIAL-Author: Rameez Shaikh / customized Pamela Filipinski
+ */
 
-import com.sun.istack.NotNull;
 
 public class UserDTO {
 

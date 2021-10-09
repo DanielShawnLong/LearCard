@@ -1,5 +1,8 @@
 package htwsaar.ariadne.learcard.security.model;
-
+/**
+ * Made with tutorial: https://medium.com/swlh/spring-boot-security-jwt-hello-world-example-b479e457664c
+ * @author TUTORIAL-Author: Rameez Shaikh / customized Pamela Filipinski
+ */
 import java.io.Serializable;
 
 public class JwtRequest implements Serializable {

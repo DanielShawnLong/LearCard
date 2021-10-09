@@ -1,5 +1,8 @@
 package htwsaar.ariadne.learcard.security.config;
-
+/**
+ * Made with tutorial: https://medium.com/swlh/spring-boot-security-jwt-hello-world-example-b479e457664c
+ * @author TUTORIAL-Author: Rameez Shaikh / customized Pamela Filipinski
+ */
 
 import htwsaar.ariadne.learcard.security.service.JwtUserDetailsService;
 import io.jsonwebtoken.ExpiredJwtException;
