@@ -5,6 +5,10 @@ import htwsaar.ariadne.learcard.repositorys.LearnCardRepository;
 
 import javax.persistence.*;
 
+/**
+ * Entity CARD
+ * @author Pamela Filipinski, Daniel-Shawn Long
+ */
 @Entity
 @Table(name = "learncards")
 public class LearnCard {
@@ -28,11 +32,11 @@ public class LearnCard {
     @Column(columnDefinition = "BOOLEAN")
     private Boolean rightAnswer;
 
-    @ManyToOne (cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @NotNull
     private LearnCardGroup group;
 
-    public LearnCard () {
+    public LearnCard() {
         this.isSolved = false;
         this.frontText = "";
         this.backText = "";
@@ -41,23 +45,27 @@ public class LearnCard {
         this.rightAnswer = false;
     }
 
-    public LearnCard (Boolean isSolved, String frontText, String backText, String userName, LearnCardGroup group, Boolean rightAnswer) {
+    public LearnCard(Boolean isSolved, String frontText, String backText, String userName, LearnCardGroup group, Boolean rightAnswer) {
         this.isSolved = isSolved;
         this.frontText = frontText;
         this.backText = backText;
         this.userName = userName;
-       this.group = group;
-       this.rightAnswer = rightAnswer;
+        this.group = group;
+        this.rightAnswer = rightAnswer;
     }
 
     public Long getId() {
         return id;
     }
-    public void setId(Long id) { this.id = id; }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Boolean getIsSolved() {
         return isSolved;
     }
+
     public void setIsSolved(Boolean isSolved) {
         this.isSolved = isSolved;
     }
@@ -65,6 +73,7 @@ public class LearnCard {
     public String getFrontText() {
         return frontText;
     }
+
     public void setFrontText(String frontText) {
         this.frontText = frontText;
     }
@@ -72,6 +81,7 @@ public class LearnCard {
     public String getBackText() {
         return backText;
     }
+
     public void setBackText(String backText) {
         this.backText = backText;
     }
@@ -79,17 +89,26 @@ public class LearnCard {
     public String getUserName() {
         return userName;
     }
-    public void setUserName(String userName){ this.userName = userName; }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public LearnCardGroup getGroup() {
         return group;
     }
+
     public void setGroup(LearnCardGroup group) {
         this.group = group;
     }
 
-    public Boolean getRightAnswer(){return rightAnswer;}
-    public void setRightAnswer(Boolean rightAnswer){this.rightAnswer = rightAnswer;}
+    public Boolean getRightAnswer() {
+        return rightAnswer;
+    }
+
+    public void setRightAnswer(Boolean rightAnswer) {
+        this.rightAnswer = rightAnswer;
+    }
 
 
 }

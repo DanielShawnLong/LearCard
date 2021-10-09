@@ -63,7 +63,8 @@ public class UserController {
      * @author Pamela Filipinski
      */
     @PutMapping("/users/{id}")
-    User replaceUser(@RequestBody User newUser, @PathVariable Long id) {
+    User replaceUser(@RequestBody User newUser,
+                     @PathVariable Long id) {
 
         return repository.findById(id)
                 .map(user -> {
