@@ -1,5 +1,6 @@
 /**
  * Header Component
+ * @author Pamela Filipinski
  */
 import React from 'react'
 import {
@@ -47,6 +48,7 @@ const Header = (props) => {
 
   /**
    * Handle logout button
+   * @author Pamela Filipinski
    */
   const handleOnClick = () => {
     localStorage.clear()

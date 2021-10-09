@@ -1,5 +1,6 @@
 /**
  * Service -> get cards from group
+ * @author Pamela Filipinski
  */
 import axios from 'axios'
 import authHeader from '../_helpers/authHeader'

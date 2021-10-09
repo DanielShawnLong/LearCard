@@ -1,10 +1,9 @@
+/**
+ * Cards View
+ * @author Pamela Filipinski
+ */
 import {
   Button,
-  TextField,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
   makeStyles,
   List,
   ListItemText,
@@ -71,6 +70,7 @@ const Cards = (props) => {
   
   /**
    * Use Effect for GET cards from group
+   * @author Pamela Filipinski
    */
   useEffect(() => {
 
@@ -90,18 +90,21 @@ const Cards = (props) => {
 
   /**
    * Handle back to group
+   * @author Pamela Filipinski
    */
   const handleBackToGroup = () => {
     setOpenCards(false)
   }
   /**
    * Handle open add card dialog 
+   * @author Pamela Filipinski
    */
   const handleClickOpen = () => {
     setOpen(true)
   }
   /**
    * Handle open Session
+   * @author Pamela Filipinski
    */
   const handleOpenSession = () => {
     
@@ -111,6 +114,7 @@ const Cards = (props) => {
   /**
  * Handle delete card
  * @param {*} id 
+ * @author Pamela Filipinski
  */
   const handleDelete = (id) => {
     

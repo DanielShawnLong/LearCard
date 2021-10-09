@@ -1,5 +1,6 @@
 /**
  * Register view 
+ * @author Pamela Filipinski
  */
 import {
   Grid,
@@ -64,6 +65,7 @@ const Register = (props) => {
    * On change for username, password, repeat password input
    * @param {*} e 
    * @param {*} controlName 
+   * @author Pamela Filipinski
    */
   const onChange = (e, controlName) => {
     e.preventDefault()
@@ -74,6 +76,7 @@ const Register = (props) => {
 
   /**
    * Handle register button
+   * @author Pamela Filipinski
    */
   const handleAddUser = () => {
     if(registerData.userName === '' || registerData.userEmail === '' || registerData.userPassword === '' || registerData.password2 ===''){
@@ -101,6 +104,7 @@ const Register = (props) => {
   }
   /**
    * Handle move to login view button
+   * @author Pamela Filipinski
    */
   const moveToLoginView = () => {
     setView({ isLoggedIn: false, registerView: false })

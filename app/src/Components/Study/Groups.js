@@ -1,5 +1,6 @@
 /**
- * Header Component
+ * Groups View
+ * @author Pamela Filipinski
  */
 import React, { useState, useEffect } from 'react'
 import {
@@ -69,6 +70,7 @@ const Groups = (props) => {
 
   /**
    * Get data from API when rendered or when change
+   * @author Pamela Filipinski
    */
   useEffect(() => {
 
@@ -88,12 +90,14 @@ const Groups = (props) => {
  
   /**
    * Handle open add group dialog 
+   * @author Pamela Filipinski
    */
   const handleClickOpen = () => {
     setOpen(true)
   }
   /**
    * Handle open cards
+   * @author Pamela Filipinski
    */
   const handleOpenCards = (index) => {
     setIndex(index)
@@ -102,6 +106,7 @@ const Groups = (props) => {
   /**
  * Handle delete group
  * @param {*} id 
+ * @author Pamela Filipinski
  */
   const handleDelete = (id) => {
     

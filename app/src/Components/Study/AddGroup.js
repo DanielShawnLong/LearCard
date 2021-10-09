@@ -1,3 +1,7 @@
+/**
+ * Add Group POP UP
+ * @author Pamela Filipinski
+ */
 import {
   Button,
   TextField,
@@ -17,6 +21,7 @@ const AddGroup = (props) => {
   
   /**
   * Handle close dialog
+  * @author Pamela Filipinski
   */
   const handleClose = () => {
     setOpen(false)
@@ -25,6 +30,7 @@ const AddGroup = (props) => {
   /**
   * Handle change group name input
   * @param {*} e 
+  * @author Pamela Filipinski
   */
   const handleChangeName =(e) =>{
     const newNameValue = e.target.value
@@ -33,6 +39,7 @@ const AddGroup = (props) => {
   
   /**
   * Handle add group -> save button
+  * @author Pamela Filipinski
   */
   const addGroup = () => {
   

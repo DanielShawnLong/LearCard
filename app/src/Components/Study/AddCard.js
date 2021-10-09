@@ -1,3 +1,7 @@
+/**
+ * Add Card POP UP
+ * @author Pamela Filipinski
+ */
 import {
   Button,
   TextField,
@@ -17,6 +21,7 @@ const AddCard = (props) => {
     
   /**
    * Handle close dialog
+   * @author Pamela Filipinski
    */
   const handleClose = () => {
     setOpen(false)
@@ -25,6 +30,7 @@ const AddCard = (props) => {
   /**
    * Handle change card frontText input
    * @param {*} e 
+   * @author Pamela Filipinski
    */
   const handleChangeFrontText =(e) =>{
     const newNameValue = e.target.value
@@ -33,6 +39,7 @@ const AddCard = (props) => {
   /**
    * Handle change card frontText input
    * @param {*} e 
+   * @author Pamela Filipinski
    */
   const handleChangeBackText =(e) =>{
     const newNameValue = e.target.value
@@ -40,6 +47,7 @@ const AddCard = (props) => {
   }
   /**
    * Handle add card-> save button
+   * @author Pamela Filipinski
    */
   const addCard = () => {
     CardService.addCard(card)

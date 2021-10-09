@@ -1,5 +1,6 @@
 /**
  * SERVICES CARDS
+ * @author Pamela Filipinski
  */
  
 import getCardsFromGroup from './getCardsFromGroup'

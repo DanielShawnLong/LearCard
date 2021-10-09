@@ -1,5 +1,6 @@
 /**
  * SERVICES GROUP
+ * @author Pamela Filipinski
  */
 import addGroup from './addGroup'
 import getGroups from './getGroups'

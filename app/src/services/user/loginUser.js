@@ -1,5 +1,6 @@
 /**
  * Service -> login user
+ * @author Pamela Filipinski
  */
 import axios from 'axios'
 

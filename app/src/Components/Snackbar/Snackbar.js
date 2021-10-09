@@ -1,5 +1,6 @@
 /**
  * Snackbar component for error msg
+ * @author Pamela Filipinski
  */
 import { Snackbar, makeStyles } from '@material-ui/core'
 import React from 'react'

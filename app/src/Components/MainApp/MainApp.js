@@ -1,5 +1,6 @@
 /**
  * Main App Component -> Header/Sidebar/Calendar/Footer
+ * @author Pamela Filipinski
  */
 import React from 'react'
 import {

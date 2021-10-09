@@ -1,5 +1,6 @@
 /**
  * Login View
+ * @author Pamela Filipinski
  */
 
 import React, { useState } from 'react'
@@ -72,6 +73,7 @@ const Login = (props) => {
    * On change for username, password input
    * @param {*} e 
    * @param {*} controlName 
+   * @author Pamela Filipinski
    */
   const onChange = (e, controlName) => {
     e.preventDefault()
@@ -83,6 +85,7 @@ const Login = (props) => {
 
   /**
    * Handle login button
+   * @author Pamela Filipinski
    */
   const handleLoginUser = () => {
     if (loginData.userName === '' || loginData.userPassword === '') {
@@ -103,6 +106,7 @@ const Login = (props) => {
 
   /**
    * Handle move to register view button
+   * @author Pamela Filipinski
    */
   const moveToRegisterView = () => {
     setView({ isLoggedIn: false, registerView: true })

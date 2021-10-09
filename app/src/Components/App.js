@@ -1,5 +1,6 @@
 /**
  * App -> Register/Login/MainApp
+ * @author Pamela Filipinski
  */
 import React, { useState } from 'react'
 import {

@@ -1,5 +1,6 @@
 /**
  * Service -> add user (register)
+ * @author Pamela Filipinski
  */
 import axios from 'axios'
 

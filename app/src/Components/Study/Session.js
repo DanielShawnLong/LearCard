@@ -1,3 +1,7 @@
+/**
+ * Session View
+ * @author Pamela Filipinski
+ */
 import {
   Button,
   makeStyles,
@@ -65,6 +69,7 @@ const Session = (props) => {
    * Update card with rightAnswer = true
    * Set right view for next level if all cards are answered.
    * Set right view if all cards have correct anwer
+   * @author Pamela Filipinski
    */
   const handleRight = () => {
     
@@ -91,6 +96,7 @@ const Session = (props) => {
    * Set state for card from cardList
    * Set state rightAnswer = true
    * @param {*} id 
+   * @author Pamela Filipinski
    */
   const updateRight = (id)=>{
     const newList = cardList.cardList.map((item) => {
@@ -109,6 +115,7 @@ const Session = (props) => {
   /**
    * Set state for card from cardList
    * Set state rightAnswer = false
+   * @author Pamela Filipinski
    */
   const updateWrong = (id)=>{
     const newList = cardList.cardList.map((item) => {
@@ -128,6 +135,7 @@ const Session = (props) => {
    * Handle wrong answer button.
    * Update card with rightAnswer = false
    * Set right view for next level if all cards are answered.
+   * @author Pamela Filipinski
    */
   const handleWrong = () => {
     updateWrong(cardList.cardList[activeStep].id)
@@ -147,6 +155,7 @@ const Session = (props) => {
   /**
    * Handle toggleAnswer state. 
    * Toggle between question and answer
+   * @author Pamela Filipinski
    */
   const handleAnswer = () => {
     setToggleAnswer(prevToggle => !prevToggle)
@@ -156,6 +165,7 @@ const Session = (props) => {
    * Handle back to cards view. 
    * All cards will be reset (rightAnswer set to false)
    * Group level wil be set to 0
+   * @author Pamela Filipinski
    */
   const handleBackToCards = () => {
    
@@ -173,6 +183,7 @@ const Session = (props) => {
    * Set level to +1
    * Get only wrong answered cards
    * Start next level
+   * @author Pamela Filipinski
    */
   const handleNextLevel = () => {
   

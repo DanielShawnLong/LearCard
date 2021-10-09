@@ -1,5 +1,6 @@
 /**
  * Service -> update group Level
+ * @author Pamela Filipinski
  */
 import axios from 'axios'
 import authHeader from '../_helpers/authHeader'
