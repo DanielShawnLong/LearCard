@@ -4,13 +4,13 @@ Projektarbeit: Lernkartei (für die htw saar)
 Application for learning with cards.
 
 Backend:
--Spring Boot
--Hibernate
--MySQL
+- Spring Boot
+- Hibernate
+- MySQL
 
 Frontend:
--React
--Material UI
+- React
+- Material UI
 
 To start:
 1. Create database (MySQL): "learcard"
