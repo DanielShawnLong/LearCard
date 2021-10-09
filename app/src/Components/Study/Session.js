@@ -1,31 +1,16 @@
 import {
   Button,
-  TextField,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
   makeStyles,
-  List,
-  ListItemText,
-  Tooltip,
-  IconButton,
   Typography
     
 } from '@material-ui/core'
 import Box from '@mui/material/Box'
-import { useTheme } from '@mui/material/styles'
 import MobileStepper from '@mui/material/MobileStepper'
 import Paper from '@mui/material/Paper'
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
-import DeleteIcon from '@material-ui/icons/Delete'
-import React, {useEffect, useState, useReducer }from 'react'
+import React, {useState}from 'react'
 import handleCatchError from '../_helpers/handleCatchServicesError'
-import isAxiosError from '../_helpers/isAxiosError'
 import CardService from '../../services/cards'
 import GroupService from '../../services/group'
-import { SettingsInputAntennaTwoTone } from '@material-ui/icons'
 
 const useStyle = makeStyles(() => ({
   button: {
@@ -63,205 +48,115 @@ const useStyle = makeStyles(() => ({
 }))
 
 const Session = (props) => {
-  const {cardList, group, setGroup, setOpenSession, openSession, setCardList, updateList, setAlert, setUpdateList, setCard} = props
-  const theme = useTheme()
+  const { cardList, group, setOpenSession, setCardList, updateList, setAlert, setUpdateList } = props
   const sessionLabel = `Level ${group.level}`
   const [activeStep, setActiveStep] = useState(0)
   const [toggleAnswer, setToggleAnswer] = useState(true)
   const [nextSession, setNextSession] = useState(false) //for next level
-  const [emptyList, setEmptyList] = useState(false)
-  const[update, setUpdate]=   useState(false)
+  const [emptyList, setEmptyList] = useState(false) //for all answer right
+
   const classes = useStyle()
  
   var maxSteps = cardList.cardList.length
   let sortedCards
-  const forceUpdate = React.useReducer(bool => !bool)[1]
  
+  /**
+   * Handle right answer button.
+   * Update card with rightAnswer = true
+   * Set right view for next level if all cards are answered.
+   * Set right view if all cards have correct anwer
+   */
   const handleRight = () => {
     
-    console.log('TRUE??1', cardList.cardList.filter((card) => card['rightAnswer'] == true))
     updateRight(cardList.cardList[activeStep].id)
     CardService.updateCardAnswer({ rightAnswer: true, isSolved: true }, cardList.cardList[activeStep].id).then(
       () => {
         if (activeStep === maxSteps - 1) {
      
-          //setCardList({ ...cardList, [cardList.cardList[activeStep].rightAnswer]: true })
-          //() => setCardList((prev) => ({ ...prev, [cardList.cardList[activeStep].rightAnswer]: true }))
-          //updateRight(cardList.cardList[activeStep].id)
-          //console.log('CARDLIST', cardList.cardList[activeStep])
-          //forceUpdate()
-          //setUpdateList(!updateList)
-          
-          console.log('TRUE??', cardList.cardList.filter((card) => card['rightAnswer'] == false).length)
-          //!cardList.cardList.some((card) => card['rightAnswer'] === false) || 
           if (cardList.cardList.filter((card) => card['rightAnswer'] == false).length <= 1) {
-          //if(cardList.cardList !== null){
-            console.log('TRUE', cardList.cardList)
             setEmptyList(true)
           } else {
-         
-            console.log('FALSE', cardList.cardList)
             handleAnswer()//always show Question first
-            setNextSession(true)//When all questions Answered move to next level
-          
+            setNextSession(true)//When all questions answered move to next level
           }
-          //updateRight(cardList.cardList[activeStep].id)
-          // handleAnswer()//always show Question first
-          // setNextSession(true)//When all questions Answered move to next level
-        
         } else {
-        
-          //setCardList({ ...cardList, [cardList.cardList[activeStep].rightAnswer]: true })
-          //() => setCardList((prev) => ({ ...prev, [cardList.cardList[activeStep].rightAnswer]: true }))
-          //() => setCardList((prev) => ({ ...prev, [prev.cardList[activeStep].rightAnswer]: true }))
-          //updateRight(cardList.cardList[activeStep].id)           //!!!
-          // console.log('AKTIV_STEP', activeStep)
-          // console.log('CARDLIST 2', cardList.cardList[activeStep])
-          //console.log('CARDLIST LENGTH',cardList.cardList.length)
-          console.log('Hello', cardList)
           handleAnswer()//always show Question first
           setActiveStep((prevActiveStep) => prevActiveStep + 1)
-       
         }
       }
     )
-    /*
-    //setUpdateList(!updateList)
-    if (activeStep === maxSteps - 1) {
-     
-      //setCardList({ ...cardList, [cardList.cardList[activeStep].rightAnswer]: true })
-      //() => setCardList((prev) => ({ ...prev, [cardList.cardList[activeStep].rightAnswer]: true }))
-      //updateRight(cardList.cardList[activeStep].id)
-      //console.log('CARDLIST', cardList.cardList[activeStep])
-      setUpdateList(!setUpdateList)
-      console.log('TRUE??', cardList.cardList.some((card) => card['rightAnswer'] == true))
-      if (!cardList.cardList.some((card) => card['rightAnswer'] === false) || cardList.cardList == []) {
-        
-        console.log('TRUE',cardList.cardList)
-        setEmptyList(true)
-      } else {
-       
-        console.log('FALSE', cardList.cardList)
-        handleAnswer()//always show Question first
-        setNextSession(true)//When all questions Answered move to next level
-        
-      }
-      //updateRight(cardList.cardList[activeStep].id)
-      // handleAnswer()//always show Question first
-      // setNextSession(true)//When all questions Answered move to next level
-      
-    } else {
-      
-      //setCardList({ ...cardList, [cardList.cardList[activeStep].rightAnswer]: true })
-      //() => setCardList((prev) => ({ ...prev, [cardList.cardList[activeStep].rightAnswer]: true }))
-      //() => setCardList((prev) => ({ ...prev, [prev.cardList[activeStep].rightAnswer]: true }))
-      //updateRight(cardList.cardList[activeStep].id)           //!!!
-      // console.log('AKTIV_STEP', activeStep)
-      // console.log('CARDLIST 2', cardList.cardList[activeStep])
-      //console.log('CARDLIST LENGTH',cardList.cardList.length)
-      console.log('Hello',cardList)
-      handleAnswer()//always show Question first
-      setActiveStep((prevActiveStep) => prevActiveStep + 1)
-     
-    }*/
   }
+
+  /**
+   * Set state for card from cardList
+   * Set state rightAnswer = true
+   * @param {*} id 
+   */
   const updateRight = (id)=>{
-    //setCardList(() => (prev) => ({ ...prev, [prev.cardList[activeStep].rightAnswer]: true }))
     const newList = cardList.cardList.map((item) => {
-      console.log('ID', item.id)
       if (item.id == id) {
         const updatedItem = {
           ...item, rightAnswer: true,
         }
-        console.log('UP ITEM:', updatedItem)
-      
         return updatedItem
       }
-      console.log('ITEM:', item)
-     
-      return item
-      
+      return item  
     })
     const newObject = { cardList: newList }
-
-    console.log('CARDLIST PAMCIA:', cardList)
-    console.log('NEW LIST:', newList)
-    console.log('Object PAMCIA:',newObject)
-    
-    //setCardList(newObject)//{...cardList, cardList: newList})
-    //setCardList(['HELLO'])
-    // setCardList((prev) => ({ prev, newObject })) // 2 arrays
-    
-    console.log('CARDLIST OBJECT STATE PAMCIA 1:', cardList)
-    //setCardList((prev) => ({ ...prev,  newList })) // 2 arrays
-    setCardList((prev) => (  newObject ))
-    console.log('CARDLIST OBJECT STATE PAMCIA:', cardList)
-    if (!newList.some((card) => card['rightAnswer'] == true)) {
-      
-      console.log('TRUE')
-      setEmptyList(true)
-    }
-    
+    setCardList((prev) => (newObject))
   }
+
+  /**
+   * Set state for card from cardList
+   * Set state rightAnswer = false
+   */
   const updateWrong = (id)=>{
-    //setCardList(() => (prev) => ({ ...prev, [prev.cardList[activeStep].rightAnswer]: true }))
     const newList = cardList.cardList.map((item) => {
-      console.log('ID', item.id)
       if (item.id == id) {
         const updatedItem = {
           ...item, rightAnswer: false,
         }
-        console.log('UP ITEM:', updatedItem)
-      
         return updatedItem
       }
-      console.log('ITEM:', item)
-     
-      return item
-      
+      return item     
     })
     const newObject = { cardList: newList }
-
-    console.log('CARDLIST PAMCIA:', cardList)
-    console.log('NEW LIST:', newList)
-    console.log('Object PAMCIA:',newObject)
-    
-    //setCardList(newObject)//{...cardList, cardList: newList})
-    //setCardList(['HELLO'])
-    // setCardList((prev) => ({ prev, newObject })) // 2 arrays
-    
-    console.log('CARDLIST OBJECT STATE PAMCIA 1:', cardList)
-    //setCardList((prev) => ({ ...prev,  newList })) // 2 arrays
     setCardList((prev) => (  newObject ))
-    console.log('CARDLIST OBJECT STATE PAMCIA:', cardList)
-
   }
+  
+  /**
+   * Handle wrong answer button.
+   * Update card with rightAnswer = false
+   * Set right view for next level if all cards are answered.
+   */
   const handleWrong = () => {
     updateWrong(cardList.cardList[activeStep].id)
     CardService.updateCardAnswer({ rightAnswer: false, isSolved: true }, cardList.cardList[activeStep].id)
-    // CardService.getCardsFromGroup(group.id)
    
     if (activeStep === maxSteps - 1) {
-      //setCardList({ ...cardList, [cardList.cardList[activeStep].rightAnswer]: false })
-      
-      console.log('CARDLIST 3',cardList.cardList[activeStep])
-  
       handleAnswer()//always show Question first
       setNextSession(true) //When all questions Answered move to next level
-      //cardList.cardList[activeStep].rightAnswer= false
+      
     } else {
-      //setCardList({ ...cardList, [cardList.cardList[activeStep].rightAnswer]: false })
-    
-      console.log('CARDLIST 4',cardList.cardList[activeStep])
       handleAnswer() //always show Question first
       setActiveStep((prevActiveStep) => prevActiveStep + 1)
       
     }
   }
+
+  /**
+   * Handle toggleAnswer state. 
+   * Toggle between question and answer
+   */
   const handleAnswer = () => {
     setToggleAnswer(prevToggle => !prevToggle)
   }
     
+  /**
+   * Handle back to cards view. 
+   * All cards will be reset (rightAnswer set to false)
+   * Group level wil be set to 0
+   */
   const handleBackToCards = () => {
    
     CardService.resetCards(group.id)
@@ -272,6 +167,13 @@ const Session = (props) => {
     setOpenSession(false)
    
   }
+
+  /**
+   * Handle next level
+   * Set level to +1
+   * Get only wrong answered cards
+   * Start next level
+   */
   const handleNextLevel = () => {
   
     let nextLevel = group.level + 1
@@ -340,7 +242,6 @@ const Session = (props) => {
               disabled={false}
             >
             Right
-              { console.log('RENDER',cardList)}
             </Button>
           }
           backButton={
@@ -351,7 +252,7 @@ const Session = (props) => {
           }
         />
       </Box>
-      <Button onClick={() => handleBackToCards()} className={classes.button}>Back to Cards</Button>
+      <Button onClick={() => handleBackToCards()} className={classes.button}>Finish Session</Button>
     </div>
   )
 }

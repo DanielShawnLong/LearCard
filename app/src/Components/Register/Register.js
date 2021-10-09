@@ -18,7 +18,7 @@ import handleCatchError from '../_helpers/handleCatchServicesError'
 
 const theme = createMuiTheme({
   palette: {
-    primary: { main: '#eb52b5' },
+    primary: { main: '#00b5c2' },
   },
 })
 
@@ -92,7 +92,7 @@ const Register = (props) => {
             return
           }
           setView({isLoggedIn: false, registerView: false})
-          // window.location.href = '/'
+          
         }) 
         .catch((error) =>  {
           handleCatchError(error, setAlert)

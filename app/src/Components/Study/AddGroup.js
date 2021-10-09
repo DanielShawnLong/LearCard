@@ -16,24 +16,24 @@ const AddGroup = (props) => {
   const { open,  group, setOpen, setGroup, updateList, setUpdateList , setAlert} = props
   
   /**
-     * Handle close dialog
-     */
+  * Handle close dialog
+  */
   const handleClose = () => {
     setOpen(false)
   }
   
   /**
-     * Handle change group name input
-     * @param {*} e 
-     */
+  * Handle change group name input
+  * @param {*} e 
+  */
   const handleChangeName =(e) =>{
     const newNameValue = e.target.value
     setGroup({ ...group, groupName: newNameValue })
   }
   
   /**
-     * Handle add group -> save button
-     */
+  * Handle add group -> save button
+  */
   const addGroup = () => {
   
     GroupService.addGroup(group)

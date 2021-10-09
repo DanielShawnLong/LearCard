@@ -1,5 +1,5 @@
 /**
- * Service -> get cards from group
+ * Service -> get wrong answered cards from group
  */
 import axios from 'axios'
 import authHeader from '../_helpers/authHeader'

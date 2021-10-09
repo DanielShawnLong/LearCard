@@ -18,7 +18,6 @@ import handleCatchError from '../_helpers/handleCatchServicesError'
 import isAxiosError from '../_helpers/isAxiosError'
 import AddGroup from './AddGroup'
 import Cards from './Cards'
-import { indexOf } from 'lodash'
 
 const useStyle = makeStyles(() => ({
   button: {
@@ -56,8 +55,8 @@ const useStyle = makeStyles(() => ({
 }))
  
 const Groups = (props) => {
-  const {setAlert} = props
-  console.log('mysetalert',setAlert)
+  const { setAlert } = props
+  
   const [group, setGroup] = useState({ groupName: '' })
   const [groupList, setGroupList] = useState({ groupList: null })
   const [open, setOpen] = useState(false)
@@ -88,7 +87,7 @@ const Groups = (props) => {
   }, [updateList])
  
   /**
-   * Handle open add group dialog gug
+   * Handle open add group dialog 
    */
   const handleClickOpen = () => {
     setOpen(true)

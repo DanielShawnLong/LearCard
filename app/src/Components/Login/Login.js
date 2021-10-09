@@ -19,7 +19,7 @@ import {NOTIFICATIONS} from '../../constants'
 
 const theme = createMuiTheme({
   palette: {
-    primary: { main: '#eb52b5' },
+    primary: { main: '#00b5c2' },
   },
 })
 

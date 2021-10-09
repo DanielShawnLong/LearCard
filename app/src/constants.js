@@ -14,7 +14,7 @@ module.exports = {
     FILL_ALL_FIELDS: 'Please fill out all fields'
   },
   REGISTER: {
-    PASSWORD_DONT_MATCH: 'PAsswords don\'t match', 
+    PASSWORD_DONT_MATCH: 'Passwords don\'t match', 
     CONTROL_DATA: 'Please control your data'
   },
  

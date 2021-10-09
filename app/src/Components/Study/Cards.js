@@ -56,12 +56,12 @@ const useStyle = makeStyles(() => ({
   
 }))
 const Cards = (props) => {
-  const { setOpenCards, openCards, group, setGroup } = props
-  console.log({group})
+  const { setOpenCards, group, setGroup } = props
+
   const classes = useStyle()
   const [updateList, setUpdateList] = useState(false)
   const {setAlert} = props
-  console.log('mysetalert',setAlert)
+  
   const [card, setCard] = useState({ frontText: '', backText:'', isSolved:false, group: {id: group.id}, rightAnswer: false })
   const [cardList, setCardList] = useState({ cardList: null })
   const [open, setOpen] = useState(false)
@@ -69,6 +69,9 @@ const Cards = (props) => {
 
   let sortedCards
   
+  /**
+   * Use Effect for GET cards from group
+   */
   useEffect(() => {
 
     CardService.getCardsFromGroup(group.id)
@@ -82,7 +85,7 @@ const Cards = (props) => {
       ).catch(error => {
         handleCatchError(error, setAlert)
       })
-    console.log('CARDS', cardList)
+  
   }, [updateList])
 
   /**
@@ -125,7 +128,6 @@ const Cards = (props) => {
           group={group}
           setOpenSession={setOpenSession}
           setGroup={setGroup}
-          // card={card}
           setCardList={setCardList}
           updateList={updateList}
           setAlert={setAlert}

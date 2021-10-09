@@ -13,37 +13,35 @@ import isAxiosError from '../_helpers/isAxiosError'
 import CardService from '../../services/cards'
     
 const AddCard = (props) => {
-  const { open, card, setCard,  group, setOpen, setGroup, updateList, setUpdateList , setAlert} = props
+  const { open, card, setCard,  group, setOpen,  updateList, setUpdateList , setAlert} = props
     
   /**
-       * Handle close dialog
-       */
+   * Handle close dialog
+   */
   const handleClose = () => {
     setOpen(false)
   }
     
   /**
-       * Handle change card frontText input
-       * @param {*} e 
-       */
+   * Handle change card frontText input
+   * @param {*} e 
+   */
   const handleChangeFrontText =(e) =>{
     const newNameValue = e.target.value
     setCard({ ...card, frontText: newNameValue })
   }
   /**
-       * Handle change card frontText input
-       * @param {*} e 
-       */
+   * Handle change card frontText input
+   * @param {*} e 
+   */
   const handleChangeBackText =(e) =>{
     const newNameValue = e.target.value
     setCard({ ...card, backText: newNameValue })
   }
   /**
-       * Handle add card-> save button
-       */
+   * Handle add card-> save button
+   */
   const addCard = () => {
-  //  setCard({ ...card, group: {id: id} })
-    console.log('Card',card)
     CardService.addCard(card)
       .then(result => {
         const isError = isAxiosError(result, setAlert)

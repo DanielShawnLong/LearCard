@@ -1,5 +1,5 @@
 /**
- * Service -> update card
+ * Service -> update card answer
  */
 import axios from 'axios'
 import authHeader from '../_helpers/authHeader'
