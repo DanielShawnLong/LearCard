@@ -17,7 +17,7 @@ To start:
 2. Open terminal in api folder and run commands: 
 -mvn clean install
 -mvn spring-boot:run
-3.Open terminal in app folder and run commands:
+3. Open terminal in app folder and run commands:
 -npm install
 -npm run start
 
