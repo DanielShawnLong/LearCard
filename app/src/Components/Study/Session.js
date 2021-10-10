@@ -47,6 +47,10 @@ const useStyle = makeStyles(() => ({
   },
   group: {
     background: '#5be8f5 ', 
+  },
+  session: {
+    marginLeft: '600px ',
+    marginTop: '50px'
   }
     
 }))
@@ -220,7 +224,7 @@ const Session = (props) => {
     </div>)
   
   return (
-    <div>
+    <div className={classes.session}>
       <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
         <Paper
           square
