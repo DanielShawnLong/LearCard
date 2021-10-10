@@ -1,4 +1,4 @@
-package htwsaar.ariadne.learcard.security.service.interfaces;
+package htwsaar.ariadne.learcard.service.interfaces;
 
 import htwsaar.ariadne.learcard.entity.LearnCard;
 
@@ -9,20 +9,20 @@ import java.util.Optional;
 public interface LearnCardService {
 
     /**
-     * Gibt eine Liste aller Lernkarten zurück.
+     * Returns a List of every Learncard.
      * @return List Learncard
      */
     List<LearnCard> getAll();
 
     /**
-     * Trägt eine Learncard in die Datenbank ein und gibt sie zurück.
+     * Saves a Learncard into the Database and returns it.
      * @param card
      * @return Learncard
      */
     LearnCard insertCard(LearnCard card);
 
     /**
-     * Sucht eine Learncard anhand ihres namens und ihrer Id
+     * Finds a Learncard based on it's Id and Name.
      * @param id
      * @param name
      * @return Learncard
@@ -31,7 +31,7 @@ public interface LearnCardService {
     LearnCard findCardByIdandName(long id, String name);
 
     /**
-     * Sucht eine Learncard anhand ihrer id
+     * Find a Learncard by it's Id.
      * @param id
      * @return Learncard
      */
@@ -39,21 +39,21 @@ public interface LearnCardService {
     Optional<LearnCard> findCardById(long id);
 
     /**
-     * Sucht alle Learncards eines Users.
+     * Finds all Learncards from a User.
      * @param name
      * @return List Learncard
      */
     List<LearnCard> findAllByName(String name);
 
     /**
-     * Entfernt eine Learncard aus der Datenbank.
+     * Removes a Learncard from the Database.
      * @param id
      * @param name
      */
     void removeCard(long id,String name);
 
     /**
-     * Erstellt eine Liste aller Learncards eines Nutzer und einer LearncardGroup
+     * Creates a List of Learncards from a Group and a User.
      * @param group
      * @param username
      * @return List Learncard
@@ -62,7 +62,7 @@ public interface LearnCardService {
 
 
     /**
-     * Gibt eine Liste aller Learncards eines Nutzers und einer Gruppe, welche richtig beantwortet wurden.
+     * Returns a List of Learncards from a Group that have been answered correctly.
      * @param group
      * @param username
      * @param answer
@@ -73,7 +73,7 @@ public interface LearnCardService {
                                                            Boolean answer);
 
     /**
-     * Gibt eine Liste aller Learncards eines Nutzers und einer Gruppe, welche richtig beantwortet wurden.
+     * Returns a List of Learncards from a Group that have been answered correctly.
      * @param group
      * @param username
      * @param rightAnswer

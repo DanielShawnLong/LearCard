@@ -1,8 +1,8 @@
-package htwsaar.ariadne.learcard.security.service.implementation;
+package htwsaar.ariadne.learcard.service.implementation;
 
 import htwsaar.ariadne.learcard.entity.LearnCard;
 import htwsaar.ariadne.learcard.repositorys.LearnCardRepository;
-import htwsaar.ariadne.learcard.security.service.interfaces.LearnCardService;
+import htwsaar.ariadne.learcard.service.interfaces.LearnCardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

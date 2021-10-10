@@ -2,10 +2,9 @@ package htwsaar.ariadne.learcard.controller;
 
 import htwsaar.ariadne.learcard.entity.LearnCard;
 import htwsaar.ariadne.learcard.errorMsg.CardNotFoundException;
-import htwsaar.ariadne.learcard.repositorys.LearnCardRepository;
 import htwsaar.ariadne.learcard.security.config.JwtTokenUtil;
 
-import htwsaar.ariadne.learcard.security.service.implementation.LearnCardServiceImpl;
+import htwsaar.ariadne.learcard.service.implementation.LearnCardServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

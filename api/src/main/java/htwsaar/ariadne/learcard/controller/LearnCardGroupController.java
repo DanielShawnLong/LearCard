@@ -2,9 +2,8 @@ package htwsaar.ariadne.learcard.controller;
 
 import htwsaar.ariadne.learcard.entity.LearnCardGroup;
 import htwsaar.ariadne.learcard.errorMsg.GroupNotFoundException;
-import htwsaar.ariadne.learcard.repositorys.LearnCardGroupRepository;
 import htwsaar.ariadne.learcard.security.config.JwtTokenUtil;
-import htwsaar.ariadne.learcard.security.service.implementation.LearnCardGroupServiceImpl;
+import htwsaar.ariadne.learcard.service.implementation.LearnCardGroupServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,4 +1,4 @@
-package htwsaar.ariadne.learcard.security.service.interfaces;
+package htwsaar.ariadne.learcard.service.interfaces;
 
 import htwsaar.ariadne.learcard.entity.LearnCardGroup;
 
@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface LearnCardGroupService {
 
     /**
-     * Sucht eine Learncardgroup anhand ihrer id und Namens.
+     * Finds Learncardgroup by it's Id and Name.
      * @param id
      * @param name
      * @return Learncardgroup
@@ -17,28 +17,28 @@ public interface LearnCardGroupService {
     LearnCardGroup findByIdAndUserName(long id, String name);
 
     /**
-     *  Entfernt eine LearnCardGroup aus der Datenbank.
+     *  Removes a LearnCardGroup from the Database
      * @param id
      * @param name
      */
     void deleteByIdAndUserName(long id, String name);
 
     /**
-     * Gibt eine Liste aller Learncardgroups eines Nutzers aus.
+     * Returns List of every Learncardgroup of a User.
      * @param username
      * @return List Learncardgroup
      */
     List<LearnCardGroup> findByUserName(String username);
 
     /**
-     * Sucht eine Learncardgroup anhand ihrer ID.
+     * Searches LearnCardGroup by it's Id
      * @param id
      * @return
      */
     Optional<LearnCardGroup> findById(long id);
 
     /**
-     * Legt eine Learncardgroup in der Datenbank an.
+     * Saves a LearncardGroup into the Database.
      * @param group
      * @return Learncardgroup
      */
