@@ -50,9 +50,12 @@ const useStyle = makeStyles(() => ({
   },
   session: {
     marginLeft: '600px ',
-    marginTop: '50px'
-  }
-    
+    marginTop: '50px',
+
+  },
+  box: {
+    background: '#5be8f5 '
+  }, 
 }))
 
 const Session = (props) => {
@@ -225,7 +228,7 @@ const Session = (props) => {
   
   return (
     <div className={classes.session}>
-      <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
+      <Box sx={{ maxWidth: 400, flexGrow: 1 } } className={classes.box}>
         <Paper
           square
           elevation={0}
