@@ -2,8 +2,9 @@ package htwsaar.ariadne.learcard.controller;
 
 import htwsaar.ariadne.learcard.entity.LearnCardGroup;
 import htwsaar.ariadne.learcard.errorMsg.GroupNotFoundException;
-import htwsaar.ariadne.learcard.repositorys.LearnCardGroupRepository;
 import htwsaar.ariadne.learcard.security.config.JwtTokenUtil;
+import htwsaar.ariadne.learcard.service.implementation.LearnCardGroupServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,12 +13,14 @@ import java.util.List;
 @RestController
 public class LearnCardGroupController {
 
-    private LearnCardGroupRepository repository;
+    @Autowired
+    private LearnCardGroupServiceImpl service;
+    //private LearnCardGroupRepository repository;
     private JwtTokenUtil jwtToken;
 
-    LearnCardGroupController(LearnCardGroupRepository repository, JwtTokenUtil jwtToken) {
+    LearnCardGroupController(LearnCardGroupServiceImpl service, JwtTokenUtil jwtToken) {
 
-        this.repository = repository;
+        this.service = service;
         this.jwtToken = jwtToken;
     }
 
@@ -35,7 +38,7 @@ public class LearnCardGroupController {
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
         newLearnCardGroup.setUserName(name);
 
-        return repository.save(newLearnCardGroup);
+        return service.save(newLearnCardGroup);
     }
 
     /**
@@ -48,7 +51,7 @@ public class LearnCardGroupController {
     List<LearnCardGroup> all(@RequestHeader("authorization") String token) {
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
 
-        return repository.findByUserName(name);
+        return service.findByUserName(name);
     }
 
     /**
@@ -63,10 +66,10 @@ public class LearnCardGroupController {
                        @RequestHeader("authorization") String token) {
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
 
-        LearnCardGroup check = repository.findByIdAndUserName(id, name);
+        LearnCardGroup check = service.findByIdAndUserName(id, name);
         if (check == null) throw new GroupNotFoundException(id);
         else {
-            return repository.findByIdAndUserName(id, name);
+            return service.findByIdAndUserName(id, name);
         }
     }
 
@@ -84,11 +87,11 @@ public class LearnCardGroupController {
                                     @RequestHeader("authorization") String token) {
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
 
-        return repository.findById(id)
+        return service.findById(id)
                 .map(learnCardGroup -> {
                     learnCardGroup.setLevel(changedCardGroup.getLevel());
 
-                    return repository.save(learnCardGroup);
+                    return service.save(learnCardGroup);
                 })
                 .orElseGet(() -> {
                     throw new GroupNotFoundException(id);
@@ -107,7 +110,7 @@ public class LearnCardGroupController {
 
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
 
-        repository.deleteByIdAndUserName(id, name);
+        service.deleteByIdAndUserName(id, name);
     }
 
 

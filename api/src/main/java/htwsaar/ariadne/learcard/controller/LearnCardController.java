@@ -2,9 +2,10 @@ package htwsaar.ariadne.learcard.controller;
 
 import htwsaar.ariadne.learcard.entity.LearnCard;
 import htwsaar.ariadne.learcard.errorMsg.CardNotFoundException;
-import htwsaar.ariadne.learcard.repositorys.LearnCardRepository;
 import htwsaar.ariadne.learcard.security.config.JwtTokenUtil;
 
+import htwsaar.ariadne.learcard.service.implementation.LearnCardServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,12 +14,15 @@ import java.util.List;
 @RestController
 public class LearnCardController {
 
-    private LearnCardRepository repository;
+    @Autowired
+    private LearnCardServiceImpl service;
+    //private LearnCardRepository repository;
     private JwtTokenUtil jwtToken;
 
-    LearnCardController(LearnCardRepository repository, JwtTokenUtil jwtToken) {
 
-        this.repository = repository;
+    LearnCardController(LearnCardServiceImpl service, JwtTokenUtil jwtToken) {
+
+        this.service = service;
         this.jwtToken = jwtToken;
     }
 
@@ -37,7 +41,7 @@ public class LearnCardController {
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
         newLearnCard.setUserName(name);
 
-        return repository.save(newLearnCard);
+        return service.insertCard(newLearnCard);
     }
 
     /**
@@ -50,7 +54,7 @@ public class LearnCardController {
     List<LearnCard> all(@RequestHeader("authorization") String token) {
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
 
-        return repository.findByUserName(name);
+        return service.findAllByName(name);
     }
 
     /**
@@ -65,10 +69,10 @@ public class LearnCardController {
                   @RequestHeader("authorization") String token) {
 
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
-        LearnCard check = repository.findByIdAndUserName(id, name);
+        LearnCard check = service.findCardByIdandName(id, name);
         if (check == null) throw new CardNotFoundException(id);
         else {
-            return repository.findByIdAndUserName(id, name);
+            return service.findCardByIdandName(id, name);
         }
 
     }
@@ -87,11 +91,11 @@ public class LearnCardController {
                                 @RequestHeader("authorization") String token) {
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
 
-        return repository.findById(id)
+        return service.findCardById(id)
                 .map(learnCard -> {
                     learnCard.setIsSolved(changedCard.getIsSolved());
                     learnCard.setRightAnswer(changedCard.getRightAnswer());
-                    return repository.save(learnCard);
+                    return service.insertCard(learnCard);
                 })
                 .orElseGet(() -> {
                     throw new CardNotFoundException(id);
@@ -110,7 +114,7 @@ public class LearnCardController {
 
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
 
-        repository.deleteByIdAndUserName(id, name);
+        service.removeCard(id, name);
     }
 
 
@@ -127,7 +131,7 @@ public class LearnCardController {
 
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
 
-        return repository.findByGroupIdAndUserName(id, name);
+        return service.findByGroupIdAndUserName(id, name);
 
     }
 
@@ -144,7 +148,7 @@ public class LearnCardController {
 
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
 
-        return repository.findByGroupIdAndUserNameAndRightAnswer(id, name, false);
+        return service.findByGroupIdAndUserNameAndRightAnswer(id, name, false);
 
     }
 
@@ -161,7 +165,7 @@ public class LearnCardController {
 
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
 
-        return repository.findByGroupIdAndUserNameAndRightAnswerAndIsSolved(id, name, false, false);
+        return service.findByGroupIdAndUserNameAndRightAnswerAndIsSolved(id, name, false, false);
 
     }
 
@@ -177,11 +181,11 @@ public class LearnCardController {
                                @PathVariable Long id) {
         String name = jwtToken.getUsernameFromToken(token.replace("Bearer ", ""));
 
-        List<LearnCard> newList = repository.findByGroupIdAndUserName(id, name);
+        List<LearnCard> newList = service.findByGroupIdAndUserName(id, name);
 
         for (int i = 0; i < newList.size(); i++) {
             newList.get(i).setRightAnswer(false);
-            repository.save(newList.get(i));
+            service.insertCard(newList.get(i));
         }
 
         return null;

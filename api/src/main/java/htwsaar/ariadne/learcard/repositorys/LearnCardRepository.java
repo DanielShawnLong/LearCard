@@ -14,6 +14,7 @@ import java.util.List;
 public interface LearnCardRepository extends JpaRepository<LearnCard, Long> {
     List<LearnCard> findByUserName(String username);
 
+
     LearnCard findByIdAndUserName(Long id,
                                   String username);
 
