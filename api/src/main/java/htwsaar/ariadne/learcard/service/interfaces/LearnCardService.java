@@ -11,6 +11,7 @@ public interface LearnCardService {
     /**
      * Returns a List of every Learncard.
      * @return List Learncard
+     * @author Felix Werner
      */
     List<LearnCard> getAll();
 
@@ -18,6 +19,7 @@ public interface LearnCardService {
      * Saves a Learncard into the Database and returns it.
      * @param card
      * @return Learncard
+     * @author Felix Werner
      */
     LearnCard insertCard(LearnCard card);
 
@@ -26,6 +28,7 @@ public interface LearnCardService {
      * @param id
      * @param name
      * @return Learncard
+     * @author Felix Werner
      */
 
     LearnCard findCardByIdandName(long id, String name);
@@ -34,6 +37,7 @@ public interface LearnCardService {
      * Find a Learncard by it's Id.
      * @param id
      * @return Learncard
+     * @author Felix Werner
      */
 
     Optional<LearnCard> findCardById(long id);
@@ -42,6 +46,7 @@ public interface LearnCardService {
      * Finds all Learncards from a User.
      * @param name
      * @return List Learncard
+     * @author Felix Werner
      */
     List<LearnCard> findAllByName(String name);
 
@@ -49,6 +54,7 @@ public interface LearnCardService {
      * Removes a Learncard from the Database.
      * @param id
      * @param name
+     * @author Felix Werner
      */
     void removeCard(long id,String name);
 
@@ -57,6 +63,7 @@ public interface LearnCardService {
      * @param group
      * @param username
      * @return List Learncard
+     * @author Felix Werner
      */
     List<LearnCard> findByGroupIdAndUserName(Long group, String username);
 
@@ -67,6 +74,7 @@ public interface LearnCardService {
      * @param username
      * @param answer
      * @return List Learncard
+     * @author Felix Werner
      */
     List<LearnCard> findByGroupIdAndUserNameAndRightAnswer(Long group,
                                                            String username,
@@ -79,6 +87,7 @@ public interface LearnCardService {
      * @param rightAnswer
      * @param isSolved
      * @return List Learncard
+     * @author Felix Werner
      */
     List<LearnCard> findByGroupIdAndUserNameAndRightAnswerAndIsSolved(Long group,
                                                                       String username,

@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author Felix Werner
+ */
 @Service
 public class LearnCardGroupServiceImpl implements LearnCardGroupService {
 

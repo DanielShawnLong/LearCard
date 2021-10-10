@@ -12,6 +12,7 @@ public interface LearnCardGroupService {
      * @param id
      * @param name
      * @return Learncardgroup
+     * @author Felix Werner
      */
 
     LearnCardGroup findByIdAndUserName(long id, String name);
@@ -20,6 +21,7 @@ public interface LearnCardGroupService {
      *  Removes a LearnCardGroup from the Database
      * @param id
      * @param name
+     * @author Felix Werner
      */
     void deleteByIdAndUserName(long id, String name);
 
@@ -27,6 +29,7 @@ public interface LearnCardGroupService {
      * Returns List of every Learncardgroup of a User.
      * @param username
      * @return List Learncardgroup
+     * @author Felix Wernerr
      */
     List<LearnCardGroup> findByUserName(String username);
 
@@ -34,6 +37,7 @@ public interface LearnCardGroupService {
      * Searches LearnCardGroup by it's Id
      * @param id
      * @return
+     * @author Felix Werner
      */
     Optional<LearnCardGroup> findById(long id);
 
@@ -41,6 +45,7 @@ public interface LearnCardGroupService {
      * Saves a LearncardGroup into the Database.
      * @param group
      * @return Learncardgroup
+     * @author Felix Werner
      */
 
     LearnCardGroup save(LearnCardGroup group);
